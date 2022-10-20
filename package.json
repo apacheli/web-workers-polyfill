@@ -7,6 +7,12 @@
     "./self.js",
     "./worker.js"
   ],
+  "repository": "https://github.com/apacheli/web-workers-polyfill",
+  "keywords": [
+    "worker",
+    "workers",
+    "web-workers"
+  ],
   "publishConfig": {
     "access": "public"
   }
