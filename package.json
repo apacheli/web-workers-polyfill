@@ -6,5 +6,8 @@
   "files": [
     "./self.js",
     "./worker.js"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
