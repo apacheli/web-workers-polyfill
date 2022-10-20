@@ -1,0 +1,10 @@
+{
+  "name": "@apacheli/web-workers",
+  "version": "1.0.0",
+  "description": "Web Workers polyfill for Node.js.",
+  "main": "./worker.js",
+  "files": [
+    "./self.js",
+    "./worker.js"
+  ]
+}
