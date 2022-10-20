@@ -1,5 +1,7 @@
 # Web Workers Polyfill for Node.js
 
+[![](https://img.shields.io/npm/v/@apacheli/web-workers.svg)](https://www.npmjs.com/package/@apacheli/web-workers)
+
 ### About
 
 A simple Web Workers polyfill for the Node.js environment. Please 👍
