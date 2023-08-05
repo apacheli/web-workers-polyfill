@@ -1,7 +1,5 @@
 # Web Workers Polyfill for Node.js
 
-[![](https://img.shields.io/npm/v/@apacheli/web-workers.svg)](https://www.npmjs.com/package/@apacheli/web-workers)
-
 ### About
 
 A polyfill for the Web Workers API for Node.js. Please 👍
@@ -11,7 +9,7 @@ supported natively.
 ### Installing
 
 ```
-npm i @apacheli/web-workers
+$ npm i https://github.com/apacheli/web-workers
 ```
 
 ### Getting Started
