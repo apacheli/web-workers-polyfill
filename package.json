@@ -4,6 +4,7 @@
   "description": "A polyfill for the Web Workers API for Node.js.",
   "main": "./main.js",
   "files": [
+    "./main.js",
     "./self.js",
     "./worker.js"
   ],
@@ -11,7 +12,9 @@
   "keywords": [
     "worker",
     "workers",
-    "web-workers"
+    "web",
+    "web-workers",
+    "polyfill"
   ],
   "publishConfig": {
     "access": "public"
