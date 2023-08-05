@@ -4,7 +4,7 @@
 
 ### About
 
-A polyfill for Web Workers for Node.js. Please 👍
+A polyfill for the Web Workers API for Node.js. Please 👍
 [this issue](https://github.com/nodejs/node/issues/43583) so Web Workers can be
 supported natively.
 

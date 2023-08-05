@@ -11,7 +11,9 @@ class Worker extends EventTarget {
   constructor(specifier, options) {
     super();
 
-    this.#worker = new NodeWorker(specifier, options);
+    this.#worker = new NodeWorker(specifier, {
+      workerData: { name: options?.name },
+    });
     this.#worker.on("error", (error) => {
       const event = new ErrorEvent("error", { error });
       this.onerror?.(event);
