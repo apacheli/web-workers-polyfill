@@ -1,22 +1,19 @@
-const { Worker } = require("node:worker_threads");
+const NodeWorker = require("node:worker_threads").Worker;
+const { ErrorEvent } = require("./error_event.js");
 
-class WebWorker extends EventTarget {
+class Worker extends EventTarget {
   onerror = null;
   onmessage = null;
   onmessageerror = null;
 
   #worker;
 
-  constructor(specifier, options = {}) {
+  constructor(specifier, options) {
     super();
 
-    this.#worker = new Worker(specifier, {
-      workerData: {
-        name: options.name,
-      },
-    });
-    this.#worker.on("error", () => {
-      const event = new Event("error");
+    this.#worker = new NodeWorker(specifier, options);
+    this.#worker.on("error", (error) => {
+      const event = new ErrorEvent("error", { error });
       this.onerror?.(event);
       this.dispatchEvent(event);
     });
@@ -41,4 +38,7 @@ class WebWorker extends EventTarget {
   }
 }
 
-exports.WebWorker = WebWorker;
+globalThis.Worker = Worker;
+
+// 1.0.1
+exports.WebWorker = Worker;

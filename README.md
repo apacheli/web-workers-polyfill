@@ -4,9 +4,9 @@
 
 ### About
 
-A simple Web Workers polyfill for the Node.js environment. Please 👍
+A polyfill for Web Workers for Node.js. Please 👍
 [this issue](https://github.com/nodejs/node/issues/43583) so Web Workers can be
-supported natively!
+supported natively.
 
 ### Installing
 
@@ -19,29 +19,28 @@ npm i @apacheli/web-workers
 `main.js`
 
 ```js
-const Worker = globalThis.Worker ?? require("@apacheli/web-workers").WebWorker;
+require("@apacheli/web-workers");
 
-const worker = new Worker("./worker.js");
+const worker = new Worker("./test.js");
 
 worker.addEventListener("message", (event) => {
-  console.log("[main] got a message:", event.data);
+  console.log("message from test:", event.data);
+  worker.terminate();
 });
 
-worker.postMessage("send message to worker");
+worker.postMessage("Hello, World!");
 ```
 
-`worker.js`
+`test.js`
 
 ```js
-if (globalThis.self === void 0) {
-  require("@apacheli/web-workers/self.js");
-}
-
-self.postMessage("Hello, World!");
+require("@apacheli/web-workers");
 
 self.addEventListener("message", (event) => {
-  console.log("[worker] got a message from main:", event.data);
+  console.log("message from main:", event.data);
 });
+
+self.postMessage("hi");
 ```
 
 [MDN Web Docs: Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
