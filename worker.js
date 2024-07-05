@@ -1,46 +1,47 @@
-const NodeWorker = require("node:worker_threads").Worker;
-const { ErrorEvent } = require("./error_event.js");
+const { Worker: _Worker } = require("node:worker_threads");
+
+const ErrorEvent = require("./error_event.js");
 
 class Worker extends EventTarget {
-  onerror = null;
-  onmessage = null;
-  onmessageerror = null;
-
   #worker;
 
-  constructor(specifier, options) {
+  constructor(specifier, options = {}) {
     super();
 
-    this.#worker = new NodeWorker(specifier, {
-      workerData: { name: options?.name },
-    });
-    this.#worker.on("error", (error) => {
-      const event = new ErrorEvent("error", { error });
-      this.onerror?.(event);
-      this.dispatchEvent(event);
-    });
-    this.#worker.on("message", (data) => {
-      const event = new MessageEvent("message", { data });
-      this.onmessage?.(event);
-      this.dispatchEvent(event);
-    });
-    this.#worker.on("messageerror", (data) => {
-      const event = new MessageEvent("messageerror", { data });
-      this.onmessageerror?.(event);
-      this.dispatchEvent(event);
-    });
+    this.onerror = null;
+    this.onmessage = null;
+    this.onmessageerror = null;
+    this.#worker = new _Worker(specifier, options);
+    this.#worker.on("error", (event) => this.#onWorkerError(event));
+    this.#worker.on("message", (event) => this.#onWorkerMessage(event));
+    this.#worker.on("messageerror", (event) => this.#onWorkerMessageError(event));
   }
 
   postMessage(message, transfer) {
-    this.#worker.postMessage(message, transfer);
+    return this.#worker.postMessage(message, transfer);
   }
 
   terminate() {
-    this.#worker.terminate();
+    return this.#worker.terminate();
+  }
+
+  #onWorkerError(error) {
+    const event = new ErrorEvent("error", { error });
+    this.onerror?.(event);
+    this.dispatchEvent(event);
+  }
+
+  #onWorkerMessage(data) {
+    const event = new MessageEvent("message", { data });
+    this.onmessage?.(event);
+    this.dispatchEvent(event);
+  }
+
+  #onWorkerMessageError(data) {
+    const event = new MessageEvent("messageerror", { data });
+    this.onmessageerror?.(event);
+    this.dispatchEvent(event);
   }
 }
 
-globalThis.Worker = Worker;
-
-// 1.0.1
-exports.WebWorker = Worker;
+module.exports = Worker;

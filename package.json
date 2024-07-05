@@ -1,22 +1,19 @@
 {
   "name": "@apacheli/web-workers",
-  "version": "1.1.0",
-  "description": "A polyfill for the Web Workers API for Node.js.",
-  "main": "./main.js",
-  "files": [
-    "./main.js",
-    "./self.js",
-    "./worker.js"
-  ],
+  "version": "2.0.0",
+  "description": "Web Workers polyfill for Node.js.",
   "repository": "https://github.com/apacheli/web-workers-polyfill",
   "keywords": [
-    "worker",
-    "workers",
+    "node",
+    "npm",
+    "polyfill",
     "web",
     "web-workers",
-    "polyfill"
+    "worker",
+    "workers"
   ],
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "license": "MIT"
 }
