@@ -1,13 +1,13 @@
 class ErrorEvent extends Event {
-  constructor(type, options) {
-    super(type, options);
+  constructor(type, eventInitDict = {}) {
+    super(type, eventInitDict);
 
-    this.message = options.message;
-    this.filename = options.filename;
-    this.lineno = options.lineno;
-    this.colno = options.colno;
-    this.error = options.error;
+    this.colno = eventInitDict.colno ?? 0;
+    this.error = eventInitDict.error;
+    this.filename = eventInitDict.filename ?? "";
+    this.lineno = eventInitDict.lineno ?? 0;
+    this.message = eventInitDict.message ?? "";
   }
 }
 
-exports.ErrorEvent = ErrorEvent;
+module.exports = ErrorEvent;
