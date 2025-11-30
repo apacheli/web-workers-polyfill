@@ -7,14 +7,28 @@ A polyfill for Web Workers for Node.js.
 - Adds `globalThis.self`
 
 > [!NOTE]\
-> Web Workers are currently not supported natively in Node.js v22.4.0. Please 👍
-> [this issue](https://github.com/nodejs/node/issues/43583) to show your
-> support!
+> Web Workers are currently not supported natively in **Node.js v25.2.1** and
+> below. Please 👍 [this issue](https://github.com/nodejs/node/issues/43583) to
+> show your support!
 
 ## Installing
 
+Using npm:
+
 ```sh
 $ npm i @apacheli/web-workers
+```
+
+Using Deno:
+
+```sh
+$ deno add npm:@apacheli/web-workers
+```
+
+Using Bun:
+
+```sh
+$ bun install @apacheli/web-workers
 ```
 
 ## Useful Links
@@ -164,6 +178,24 @@ console.log(Worker === globalThis.Worker);
 // => Deno: true
 // => Bun: true
 ```
+
+## Browser
+
+In the event you need this package for the browser for some reason, imports from
+`esm.sh` are available.
+
+```html
+<script
+  src="https://esm.sh/@apacheli/web-workers/global.js"
+  type="module"
+></script>
+```
+
+## Bugs
+
+If you encounter any bugs, feel free to open an issue.
+
+https://github.com/apacheli/web-workers-polyfill/issues
 
 ## License
 

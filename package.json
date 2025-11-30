@@ -1,6 +1,6 @@
 {
   "name": "@apacheli/web-workers",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Web Workers polyfill for Node.js.",
   "repository": "https://github.com/apacheli/web-workers-polyfill",
   "keywords": [
@@ -15,5 +15,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "error_event.js",
+    "global.js",
+    "self.js",
+    "worker.js"
+  ],
   "license": "MIT"
 }
